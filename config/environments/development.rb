@@ -9,16 +9,21 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address => 'smtp.sendgrid.net',
-    :port => '587',
-    :authentication => :plain,
-    :username => 'neerajlivewire@heroku.com',
-    :password => 'compaq1',
-    :domain => 'heroku.com',
+    :address => "smtp.gmail.com",
+    :port => "587",
+    :domain => "gmail.com",
+    :user_name => "neerajlivewire@gmail.com",
+    :user_name => ENV["GMAIL_USERNAME"],
+    :password => ENV["GMAIL_PASSWORD"],
     :enable_starttls_auto => true
   }
-  config.action_mailer.default_url_options = {:host => 'http://localhost:3000'}
+
   # Show full error reports.
   config.consider_all_requests_local = true
 
